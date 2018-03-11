@@ -1,7 +1,9 @@
 set -g default-command "reattach-to-user-namespace -l zsh"
 # tmux display things in 256 colors
-set -g default-terminal "screen-256color"
+#set -g default-terminal "screen-256color"
 #set -g status-utf8 on
+set -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 set -g history-limit 20000
 

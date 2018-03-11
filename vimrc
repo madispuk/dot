@@ -11,6 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 filetype plugin indent on
@@ -50,12 +51,22 @@ set clipboard^=unnamed 	     "http://stackoverflow.com/questions/20186975/vim-ma
 set clipboard^=unnamedplus
 set foldcolumn=1
 set fillchars=""
+set t_Co=256
+colorscheme base16-tomorrow-night
 
-highlight FoldColumn ctermbg=0
-hi CursorLine cterm=NONE ctermbg=blue ctermfg=black guibg=blue guifg=black
+" Fix some colors
+hi CursorLine cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
+hi Visual cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
+hi QuickFixLine cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
+hi WildMenu cterm=NONE ctermbg=150 ctermfg=black guibg=150 guifg=black
+hi StatusLine cterm=NONE ctermbg=237 ctermfg=249 guibg=237 guifg=249
 hi clear VertSplit
+hi VertSplit cterm=NONE ctermbg=NONE ctermfg=150 guibg=237 guifg=249
+hi FoldColumn ctermbg=0
 set fillchars+=vert:│
 highlight EndOfBuffer ctermfg=black ctermbg=black
+
+
 "=====================================================
 "===================== MAPPINGS ======================
 "=====================================================
@@ -109,18 +120,18 @@ vnoremap . :normal .<cr>
 nnoremap <leader>/ "fyiw :/<c-r>f<cr>
 
 augroup filetypedetect
-  command! -nargs=* -complete=help Help vertical belowright help <args>
-  autocmd FileType help wincmd L
-  autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
-  autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
-  autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+	command! -nargs=* -complete=help Help vertical belowright help <args>
+	autocmd FileType help wincmd L
+	autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+	autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
+	autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+	autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
+	autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
+	autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
+	autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
+	autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
+	autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
+	autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
 augroup END
 
 
@@ -142,7 +153,7 @@ nmap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
 " run the following command when brackets appear around nerdtree devicons
-let g:webdevicons_conceal_nerdtree_brackets = 1
+" let g:webdevicons_conceal_nerdtree_brackets = 1
 " close Vim when NERDTree is the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -157,5 +168,5 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_working_path_mode = 2
 
 " Airline
+let g:airline_powerline_fonts=1
 let g:airline_theme='bubblegum'
-
