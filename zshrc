@@ -16,6 +16,7 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias l="ls -lah ${colorflag}"
+alias t="go test -tags nondb ./... | grep -v \"no test files\""
 
 
 bindkey '^[^[[D' backward-word
@@ -55,3 +56,25 @@ precmd() {
 export PROMPT='%(?.%F{blue}.%F{blue})❯%f '
 export RPROMPT='%F{241}$vcs_info_msg_0_%f'
 
+### GIT ###
+
+# add completion script
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/_git
+
+alias ga='git add'
+alias gb='git branch'
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gs='git s'
+alias gss='git stash save'
+alias gsp='git stash pop'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+# Go lang
+export GOPATH=$HOME/Go
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
