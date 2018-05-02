@@ -58,10 +58,10 @@ set t_Co=256
 hi CursorLine cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
 hi Visual cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
 hi QuickFixLine cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
-hi WildMenu cterm=NONE ctermbg=150 ctermfg=black guibg=150 guifg=black
-hi StatusLine cterm=NONE ctermbg=237 ctermfg=249 guibg=237 guifg=249
+hi WildMenu cterm=NONE ctermbg=150 ctermfg=black guibg=#afd787 guifg=black
+hi StatusLine cterm=NONE ctermbg=237 ctermfg=249 guibg=#3a3a3a guifg=#b2b2b2
 hi clear VertSplit
-hi VertSplit cterm=NONE ctermbg=NONE ctermfg=150 guibg=237 guifg=249
+hi VertSplit cterm=NONE ctermbg=NONE ctermfg=150 guibg=#3a3a3a guifg=#b2b2b2
 hi FoldColumn ctermbg=0
 set fillchars+=vert:│
 highlight EndOfBuffer ctermfg=black ctermbg=black
