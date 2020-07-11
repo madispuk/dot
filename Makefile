@@ -5,11 +5,9 @@ all:
 	mkdir -p ~/.zsh
 	mkdir -p ~/.tmuxinator
 	git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-
-	gem install tmuxinator
-	sudo easy_install pip
+	curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
 	pip install --user powerline-status
-	pip install --user neovim
+	cp monaco-powerline.otf ~/Library/Fonts
 
 	[ -f ~/.zshrc ] || ln -s $(PWD)/zshrc ~/.zshrc
 	[ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/vimrc ~/.config/nvim/init.vim
@@ -22,7 +20,6 @@ clean:
 	rm -rf ~/.config/base16-shell
 
 	rm -f ~/.zshrc
-	rm -f ~/.tmuxinator
 	rm -f ~/.vimrc
 	rm -f ~/.config/nvim/init.vim
 	rm -f ~/.tmux.conf
