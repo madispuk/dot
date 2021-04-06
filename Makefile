@@ -5,7 +5,8 @@ all:
 	mkdir -p ~/.zsh
 	mkdir -p ~/.tmuxinator
 	git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
-	curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python3 get-pip.py
 	pip install --user powerline-status
 	cp monaco-powerline.otf ~/Library/Fonts
 
