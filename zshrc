@@ -16,7 +16,6 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias l="ls -lah ${colorflag}"
-alias t="go test -tags nondb ./... | grep -v \"no test files\""
 alias c='clear'
 
 

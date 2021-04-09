@@ -1,5 +1,4 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
@@ -12,7 +11,11 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-repeat'
 Plug 'chriskempson/base16-vim'
-Plug 'SirVer/ultisnips'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 call plug#end()
 
 filetype plugin indent on
@@ -53,6 +56,10 @@ set clipboard^=unnamedplus
 set foldcolumn=1
 set fillchars=""
 set t_Co=256
+
+set background=dark
+let base16colorspace=256
+colorscheme base16-tomorrow-night
 
 " Fix some colors
 hi CursorLine cterm=NONE ctermbg=black ctermfg=white guibg=black guifg=white
@@ -178,38 +185,18 @@ let g:ctrlp_working_path_mode = 2
 let g:airline_powerline_fonts=1
 let g:airline_theme='bubblegum'
 
-" vim-go
-map <C-n> :cn<CR>
-map <C-m> :cp<CR>
-nnoremap <leader>a :cclose<CR>
+" COC
+"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-
-let g:go_sameid_search_enabled = 1
-
-let g:go_test_prepend_name = 1
-let g:go_list_type = "quickfix"
-
-let g:go_auto_type_info = 0
-let g:go_auto_sameids = 0
-
-let g:go_def_mode = "guru"
-let g:go_echo_command_info = 1
-let g:go_gocode_autobuild = 1
-let g:go_gocode_unimported_packages = 1
-
-let g:go_autodetect_gopath = 1
-" let g:go_info_mode = "guru"
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_types = 0
-let g:go_highlight_format_strings = 0
-
-let g:go_modifytags_transform = 'camelcase'
-let g:go_fold_enable = []
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
